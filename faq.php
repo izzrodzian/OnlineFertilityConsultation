@@ -99,17 +99,55 @@
   <br>
   <br>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/images/search.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
 
 <center><img src="images/faq.png" style="width:128px;height:128px;">
-<br><br>
+<br><br><br>
 <h2>Frequently Asked Questions</h2></center>
 
 <br>
+<center><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for questions" title="Type any keyword"></center>
 
-<table class="table" style="margin-top: 20px; width: 75%" align="center">
-    <tr>
-      <th>Questions</th>
-      <th>Answers</th>
+<table id="myTable" style="margin-top: 20px; width: 75%" align="center">
+    <tr class="header">
+      <th style="width: 30%;">Questions</th>
+      <th style="width: 70%;">Answers</th>
     </tr>
     <tr>
       <td>What is the difference between infertility and premature ovarian failure?</td>
@@ -126,5 +164,30 @@
       <td>Eggs, embryos and ovarian tissue can be frozen indefinitely. Any potential damage occurs during freezing and thawing, so once frozen they can be frozen for many years. There are case reports of patients who froze embryos for more than 10 years and were able to to achieve pregnancy.</td>
     </tr>
   </table>
+
+  <br>
+  <br>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
 </body>
 </html>
