@@ -160,6 +160,11 @@ $conn->close();
             <td><textarea name="history" cols="40"><?php echo $row['history'];?></textarea></td>
           </tr>
           <tr>
+            <th>Diagnosis</th>
+            <td><textarea name="diagnosis" cols="40"><?php echo $row['diagnosis'];?></textarea>
+              <a href="diagnosisDB.php"><input type="button" value="Select Diagnosis" onclick="myFunction()"></a></td>
+          </tr>
+          <tr>
             <th>Treatments</th>
             <td><textarea name="treatments" cols="40"><?php echo $row['treatments'];?></textarea>
               <a href="diagnosisDB.php"><input type="button" value="Select Treatments" onclick="myFunction()"></a>

@@ -106,7 +106,7 @@
 
 <br>
 
-<table class="table" width="80%" style="margin-top: 20px" align="center">
+<table class="table" style="margin-top: 20px; width: 75%" align="center">
     <tr>
       <th>Questions</th>
       <th>Answers</th>

@@ -84,3 +84,160 @@
     <input name="animation" type="hidden">
   </body>
 </html>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+  <h1><font color="#3377A9">Fertility Treatments & Procedures</font></h1>
+
+<br><br>
+<table border="0" style="width: 75%">
+<div class="wrapper">
+  <tr>
+  <td>
+  We offer a wide variety of fertility treatments ranging from the very simple to the more complex including:
+  </td>
+  </tr>
+  </div></table>
+
+  <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>Ovulation Cycle Tracking</b></font>
+      <br><br>
+      A simple process that can help you identify which days you’re most fertile to give you the best chance of conceiving naturally. Find out more about ovulation cycle tracking.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>Ovulation Induction (OI)</b></font>
+      <br><br>
+      A simple treatment that uses medication to help stimulate your hormones and encourage ovulation. Read more about ovulation induction.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>Artificial Insemination (IUI)</b></font>
+      <br><br>
+      A technique that involves inserting prepared sperm into the female’s uterus close to the time of ovulation. Find out more about artificial insemination.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+ <table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>IVF Treatment</b></font>
+      <br><br>
+      After a course of ovarian stimulation, eggs are collected from the ovaries and fertilised with sperm in a laboratory. One of the resulting embryos is then transferred back into the uterus. Read more about IVF treatment.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>ICSI Treatment</b></font>
+      <br><br>
+      A different, more sophisticated form of IVF where the scientist injects a single sperm into the egg to assist fertilisation. This technique is an excellent treatment if the sperm is of poor quality. Read more about ICSI treatment.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>Frozen Embryo Transfer (FET)</b></font>
+      <br><br>
+      Any additional embryos created from an IVF cycle can be frozen and stored for future use. These embryos can then be thawed and transferred if more than one treatment cycle is needed. Find out more about frozen embryo transfer.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>Fertility Surgery</b></font>
+      <br><br>
+      Surgery may be required to further investigate or treat conditions making it difficult for you to conceive such as endometriosis or fibroids for women, or to surgically retrieve sperm. Find out more about fertility surgery.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+ <table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>Advanced Science</b></font>
+      <br><br>
+      As part of our parent group, IVF Australia invests extensively in scientific research to improve knowledge of IVF and, consequently, outcomes for our patients. Read more about the research of our doctors and scientists here.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+ <table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>Artificial Intelligence in IVF</b></font>
+      <br><br>
+      A new artificial intelligence system, called Ivy, to predict the likelihood of a viable pregnancy from transfer of an individual embryo in a woman undergoing IVF.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br> 
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><font color="#0EAB8F"><b>Variations in IVF</b></font>
+      <br><br>
+      There are a wide range of variations in IVF techinque which many of our patients ask us about, such as assisted hatching, PolScope and digital high magnification. Read more about variations in IVF. 
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+
+
+ 

@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT consultationID, patientID, consultationDate, symptoms, history, treatments, suggestion, doctorID FROM consultation";
+$sql = "SELECT consultationID, patientID, consultationDate, symptoms, history, diagnosis, treatments, suggestion, doctorID FROM consultation";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -40,6 +40,7 @@ if ($result->num_rows > 0) {
       <th>Consultation Date</th>
       <th>Symptoms</th>
       <th>History</th>
+      <th>Diagnosis</th>
       <th>Treatments</th>
       <th>Suggestion</th>
       <th>Doctor ID</th>
@@ -53,6 +54,7 @@ if ($result->num_rows > 0) {
       <td><?php echo $row['consultationDate']; ?></td>
       <td><?php echo $row['symptoms']; ?></td>
       <td><?php echo $row['history']; ?></td>
+      <td><?php echo $row['diagnosis']; ?></td>
       <td><?php echo $row['treatments']; ?></td>
       <td><?php echo $row['suggestion']; ?></td>
       <td><?php echo $row['doctorID']; ?></td>
