@@ -20,6 +20,44 @@ if ($result->num_rows > 0) {
 
   ?>
 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/images/search.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
+
   <br>
   <br>
   <br>
@@ -33,11 +71,12 @@ if ($result->num_rows > 0) {
 </table>
 </center>
 <br>
-  <table class="table" width="80%" style="margin-top: 20px" align="center">
+<center><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symptoms" title="Type any keyword"></center>
+<table id="myTable" style="margin-top: 20px; width: 95%" align="center">
     <tr>
     
+      <th style="width: 30%;">Symptoms</th>
       <th>Diagnosis</th>
-      <th>Symptoms</th>
       <th>Explanation</th>
       <th>Treatments</th>
       <th>&nbsp;</th>
@@ -45,14 +84,35 @@ if ($result->num_rows > 0) {
     <?php while($row = mysqli_fetch_assoc($result)){ ?>
     <tr>
       
-      <td><?php echo $row['diagnosis']; ?></td>
       <td><?php echo $row['symptoms']; ?></td>
+      <td><?php echo $row['diagnosis']; ?></td>
       <td><?php echo $row['explanation']; ?></td>
       <td><?php echo $row['treatments']; ?></td>
       <td><a href="manageconsultation_edit.php?consultationID=<?php echo $row['consultationID']; ?>"><input type="submit" value="Select"></a></td>
     </tr>
     <?php } ?>
   </table>
+
+  <script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
    
    <?php   
 }
