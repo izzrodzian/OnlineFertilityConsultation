@@ -1,101 +1,84 @@
+
 <?php
-// Include config file
-require_once "config.php";
- 
-// Define variables and initialize with empty values
-$diagnosis = $symptoms = $explanation = $treatments = "";
-$diagnosis_err = $symptoms_err = $explanation_err = $treatments_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Validate diagnosis
-    if(empty(trim($_POST["diagnosis"]))){
-        $diagnosis_err = "Please enter a diagnosis.";
-    } else{
-        // Prepare a select statement
-        $sql = "SELECT diagnosisID FROM diagnosisDB WHERE diagnosis = ?";
-        
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_diagnosis);
-            
-            // Set parameters
-            $param_name = trim($_POST["diagnosis"]);
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                /* store result */
-                mysqli_stmt_store_result($stmt);
-                
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $diagnosis_err = "This diagnosis already added.";
-                } else{
-                    $diagnosis = trim($_POST["diagnosis"]);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-        }
-         
-        // Close statement
-        mysqli_stmt_close($stmt);
-    }
-    
-    // Validate symptoms
-     if(empty(trim($_POST["symptoms"]))){
-        $symptoms_err = "Please enter any symptoms related.";     
-    } else{
-        $symptoms = trim($_POST["symptoms"]);
-    }
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "fertility";
 
-    // Validate explanation
-     if(empty(trim($_POST["explanation"]))){
-        $explanation_err = "Please enter any explanation related.";     
-    } else{
-        $explanation = trim($_POST["explanation"]);
-    }
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
 
-     // Validate treatments
-     if(empty(trim($_POST["treatments"]))){
-        $treatments_err= "Please any treatments related.";     
-    } else{
-        $treatments = trim($_POST["treatments"]);
-    }
+// sql to delete a record
+if(isset($_GET['diagnosisID'])){
+    $diagnosisID = $_GET['diagnosisID'];
+  }
 
-    // Check input errors before inserting in database
-    if(empty($diagnosis_err) && empty($symptoms_err) && empty($explanation_err) && empty($treatments_err)){
-        
-        // Prepare an insert statement
-        $sql = "INSERT INTO diagnosisDB (diagnosis, symptoms, explanation, treatments) VALUES (?, ?, ?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_diagnosis, $param_symptoms, $param_explanation, $param_treatments);
-            
-            // Set parameters
-            $param_diagnosis = $diagnosis;
-            $param_symptoms = $symptoms;
-            $param_explanation = $explanation;
-            $param_treatments = $treatments;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Redirect to manage diagnosis page
-                header("location: managediagnosis.php");
-            } else{
-                echo "Something went wrong. Please try again later.";
-            }
-        }
-         
-        // Close statement
-        mysqli_stmt_close($stmt);
-    }
-    
-    // Close connection
-    mysqli_close($link);
-}
+
+  // get diagnosis data
+  $query = "SELECT symptoms, diagnosis, explanation, treatments FROM diagnosisDB WHERE diagnosisID = '$diagnosisID'";
+  $result = mysqli_query($conn, $query);
+  // if(!$result){
+  //   echo "Can't retrieve data " . mysqli_error($conn);
+  //   exit;
+  // }
+  
+  if(isset($_POST['confirm'])){
+    $diagnosis = $_POST['diagnosis'];
+    $treatments = $_POST['treatments'];
+
+    $sql = "INSERT INTO consultation (diagnosis, treatments) VALUES (?, ?)";
+    $query2 = mysqli_query($conn, $sql);
+  }
+
+
+
+$conn->close();
+
 ?>
+
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/images/search.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
+
+
 
 <!DOCTYPE html>
 <html  >
@@ -108,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <link rel="shortcut icon" href="assets/images/mbr-1-122x122.jpg" type="image/x-icon">
   <meta name="description" content="Site Builder Description">
   
-  <title>Add New Diagnosis</title>
+  <title>Diagnosis DB</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -159,6 +142,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.php"><span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn"></span>
                         
                         Log Out</a></li></ul>
+            
         </div>
     </nav>
 </section>
@@ -180,53 +164,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   </body>
 </html>
 
+<br>
+  <br>
+  <br>
+  <br>
+  <center>
+<table border="0">
+<tr>
+  <td><img src="images/consultation.png" style="width:128px;height:128px;"></td>
+  <td><h1>Manage Diagnosis Database</h1></td>
+</tr>
+</table>
 
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add New Diagnosis</title>
-    <style type="text/css">
-        body{  }
-        .wrapper{ width: 550px; padding: 20px; }
-    </style>
-</head>
-<body>
-  <br>
-  <br>
-  <br>
-  <br>
-    <center><div class="wrapper">
-        <h2>Add New Diagnosis</h2>
-        <p>Please fill this form to add new diagnosis.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($diagnosis_err)) ? 'has-error' : ''; ?>">
-                <label>Diagnosis</label>
-                <textarea name="diagnosis" cols="40" class="form-control" value="<?php echo $diagnosis; ?>"></textarea>
-                <span class="help-block"><?php echo $diagnosis_err; ?></span>
-            </div> 
-            <div class="form-group <?php echo (!empty($symptoms_err)) ? 'has-error' : ''; ?>">
-                <label>Symptoms</label>
-                <textarea name="symptoms" cols="100" rows="5" class="form-control" value="<?php echo $symptoms; ?>"></textarea>
-                <span class="help-block"><?php echo $symptoms_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($explanation_err)) ? 'has-error' : ''; ?>">
-                <label>Explanation</label>
-                <textarea name="explanation" cols="100" rows="5" class="form-control" value="<?php echo $explanation; ?>"></textarea>
-                <span class="help-block"><?php echo $explanation_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($treatments_err)) ? 'has-error' : ''; ?>">
-                <label>Treatments</label>
-                <textarea name="treatments" cols="100" rows="5" class="form-control" value="<?php echo $treatments; ?>"></textarea>
-                <span class="help-block"><?php echo $treatments_err; ?></span>
-            </div>
-            <input type="submit" class="btn btn-primary" value="Submit">
-            <input type="reset" class="btn btn-default" value="Reset">
-            <a href="managediagnosis.php">
-            <input type="button" class="btn btn-primary" value="Back">
-            </a>
-        </form>
-    </div> </center>
-</body>
-</html>
+<br>
+<form method="post">
+<table id="myTable" style="margin-top: 20px; width: 95%" align="center">
+  
+    <tr>
+    
+      <th  style="width: 30%;">Symptoms</th>
+      <th>Diagnosis</th>
+      <th>Explanation</th>
+      <th>Treatments</th>
+    </tr>
+    <?php while($row = mysqli_fetch_assoc($result)){ ?>
+    <tr>
+      
+      <td><?php echo $row['symptoms']; ?></td>
+      <td><?php echo $row['diagnosis']; ?></td>
+      <td><?php echo $row['explanation']; ?></td>
+      <td><?php echo $row['treatments']; ?></td>
+    </tr>
+    <?php } ?>
+</table>
+  <a href="manageconsultation_edit.php?consultationID=<?php echo $row['consultationID']; ?>"><input type="submit" name="confirm" value="Confirm" class="btn btn-primary"></a>
+</form>
+</center>
+
+<br><br>

@@ -154,8 +154,11 @@ $conn->close();
 <br>
 <center>
 <table border="0">
+<td><a href="managedoctor_add.php">
+<input type="button" class="btn btn-primary" value="Add Doctor">
+</a></td>
 <td><a href="admindashboard.php">
-  <input type="button" class="btn btn-primary" value="Admin Dashboard">
+<input type="button" class="btn btn-primary" value="Admin Dashboard">
 </a></td>
 </tr>
 </table>

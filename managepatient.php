@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT patientID, patientEmail, patientPassword, patientName, patientIC, patientDOB, patientMaritalStatus, patientPhone FROM patient";
+$sql = "SELECT patientID, patientEmail, patientPassword, patientName, patientIC, patientGender, patientMaritalStatus, patientPhone FROM patient";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
       <th>Patient Password</th>
       <th>Patient Name</th>
       <th>Patient IC Number</th>
-      <th>Patient DOB</th>
+      <th>Patient Gender</th>
       <th>Patient Marital Status</th>
       <th>Patient Phone</th>
       <th>&nbsp;</th>
@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
       <td><?php echo $row['patientPassword']; ?></td>
       <td><?php echo $row['patientName']; ?></td>
       <td><?php echo $row['patientIC']; ?></td>
-      <td><?php echo $row['patientDOB']; ?></td>
+      <td><?php echo $row['patientGender']; ?></td>
       <td><?php echo $row['patientMaritalStatus']; ?></td>
       <td><?php echo $row['patientPhone']; ?></td>
       <td><a href="managepatient_edit.php?patientID=<?php echo $row['patientID']; ?>">Edit</a></td>

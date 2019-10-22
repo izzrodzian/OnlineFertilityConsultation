@@ -11,11 +11,12 @@ $dbname = "fertility";
 	}
 
 	$consultationID = trim($_POST['consultationID']);
-	$patientID = trim($_POST['patientID']);
 	$consultationDate = trim($_POST['consultationDate']);
 	$symptoms = trim($_POST['symptoms']);
 	$history = trim($_POST['history']);
-	$solutions = trim($_POST['solutions']);
+	$diagnosis = trim($_POST['diagnosis']);
+	$treatments = trim($_POST['treatments']);
+	$suggestion = trim($_POST['suggestion']);
 	$doctorID = trim($_POST['doctorID']);
 
 // Create connection
@@ -26,12 +27,13 @@ if ($conn->connect_error) {
 } 
 
 $query = "UPDATE consultation SET  
-	consultationID = '$[consultationID]', 
-	patientID = '$[patientID]', 
+	consultationID = '$consultationID', 
 	consultationDate = '$consultationDate', 
 	symptoms = '$symptoms', 
 	history = '$history',
-	solutions = '$solutions',
+	diagnosis = '$diagnosis',
+	treatments = '$treatments',
+	suggestion = '$suggestion',
 	doctorID = '$doctorID',
 	WHERE consultationID = '$consultationID'";
 	
@@ -42,7 +44,7 @@ $query = "UPDATE consultation SET
 		echo "Can't update data " . mysqli_error($conn);
 		exit;
 	} else {
-		header("Location: manageconsultation.php?consultationID=$consultationID");
+		header("Location: manageconsultation_edit.php?consultationID=consultationID");
 	}
 
 $conn->close();

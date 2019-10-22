@@ -3,25 +3,25 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$diagnosis = $symptoms = $explanation = $treatments = "";
-$diagnosis_err = $symptoms_err = $explanation_err = $treatments_err = "";
+$doctorEmail = $doctorPassword = $doctorName = $doctorSpecialty = $doctorPhone = "";
+$doctorEmail_err = $doctorPassword_err = $doctorName_err = $doctorSpecialty_err = $doctorPhone_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Validate diagnosis
-    if(empty(trim($_POST["diagnosis"]))){
-        $diagnosis_err = "Please enter a diagnosis.";
+    // Validate doctor
+    if(empty(trim($_POST["doctorEmail"]))){
+        $doctorName_err = "Please enter your email.";
     } else{
         // Prepare a select statement
-        $sql = "SELECT diagnosisID FROM diagnosisDB WHERE diagnosis = ?";
+        $sql = "SELECT doctorID FROM doctor WHERE doctorEmail = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_diagnosis);
+            mysqli_stmt_bind_param($stmt, "s", $param_doctor);
             
             // Set parameters
-            $param_name = trim($_POST["diagnosis"]);
+            $param_name = trim($_POST["doctorEmail"]);
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -29,9 +29,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $diagnosis_err = "This diagnosis already added.";
+                    $doctorEmail_err = "This doctor already added.";
                 } else{
-                    $diagnosis = trim($_POST["diagnosis"]);
+                    $doctorEmail = trim($_POST["doctorEmail"]);
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -41,48 +41,58 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Close statement
         mysqli_stmt_close($stmt);
     }
+
+    // Validate password
+    if(empty(trim($_POST["doctorPassword"]))){
+        $doctorPassword_err = "Please enter a password.";     
+    } elseif(strlen(trim($_POST["doctorPassword"])) < 6){
+        $doctorPassword_err = "Password must have atleast 6 characters.";
+    } else{
+        $doctorPassword = trim($_POST["doctorPassword"]);
+      }
     
-    // Validate symptoms
-     if(empty(trim($_POST["symptoms"]))){
-        $symptoms_err = "Please enter any symptoms related.";     
+    // Validate name
+     if(empty(trim($_POST["doctorName"]))){
+        $doctorName_err = "Please your name.";     
     } else{
-        $symptoms = trim($_POST["symptoms"]);
+        $doctorName = trim($_POST["doctorName"]);
     }
 
-    // Validate explanation
-     if(empty(trim($_POST["explanation"]))){
-        $explanation_err = "Please enter any explanation related.";     
+    // Validate specialty
+     if(empty(trim($_POST["doctorSpecialty"]))){
+        $doctorSpecialty_err = "Please enter your specialty.";     
     } else{
-        $explanation = trim($_POST["explanation"]);
+        $doctorSpecialty = trim($_POST["doctorSpecialty"]);
     }
 
-     // Validate treatments
-     if(empty(trim($_POST["treatments"]))){
-        $treatments_err= "Please any treatments related.";     
+     // Validate phone
+     if(empty(trim($_POST["doctorPhone"]))){
+        $doctorPhone_err= "Please your phone number.";     
     } else{
-        $treatments = trim($_POST["treatments"]);
+        $doctorPhone = trim($_POST["doctorPhone"]);
     }
 
     // Check input errors before inserting in database
-    if(empty($diagnosis_err) && empty($symptoms_err) && empty($explanation_err) && empty($treatments_err)){
+    if(empty($doctorEmail_err) && empty($doctorPassword_err) && empty($doctorName_err) && empty($doctorSpecialty_err) && empty($doctorPhone_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO diagnosisDB (diagnosis, symptoms, explanation, treatments) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO doctor (doctorEmail, doctorPassword, doctorName, doctorSpecialty, doctorPhone) VALUES (?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_diagnosis, $param_symptoms, $param_explanation, $param_treatments);
+            mysqli_stmt_bind_param($stmt, "sssss", $param_doctorEmail, $param_doctorPassword, $param_doctorName, $param_doctorSpecialty, $param_doctorPhone);
             
             // Set parameters
-            $param_diagnosis = $diagnosis;
-            $param_symptoms = $symptoms;
-            $param_explanation = $explanation;
-            $param_treatments = $treatments;
+            $param_doctorEmail= $doctorEmail;
+            $param_doctorPassword = $doctorPassword;
+            $param_doctorName = $doctorName;
+            $param_doctorSpecialty = $doctorSpecialty;
+            $param_doctorPhone = $doctorPhone;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Redirect to manage diagnosis page
-                header("location: managediagnosis.php");
+                // Redirect to manage doctor page
+                header("location: managedoctor.php");
             } else{
                 echo "Something went wrong. Please try again later.";
             }
@@ -108,7 +118,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <link rel="shortcut icon" href="assets/images/mbr-1-122x122.jpg" type="image/x-icon">
   <meta name="description" content="Site Builder Description">
   
-  <title>Add New Diagnosis</title>
+  <title>Add New Doctor</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -186,7 +196,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add New Diagnosis</title>
+    <title>Add New Doctor</title>
     <style type="text/css">
         body{  }
         .wrapper{ width: 550px; padding: 20px; }
@@ -198,32 +208,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <br>
   <br>
     <center><div class="wrapper">
-        <h2>Add New Diagnosis</h2>
-        <p>Please fill this form to add new diagnosis.</p>
+        <h2>Add New Doctor</h2>
+        <p>Please fill this form to add new doctor.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($diagnosis_err)) ? 'has-error' : ''; ?>">
-                <label>Diagnosis</label>
-                <textarea name="diagnosis" cols="40" class="form-control" value="<?php echo $diagnosis; ?>"></textarea>
-                <span class="help-block"><?php echo $diagnosis_err; ?></span>
-            </div> 
-            <div class="form-group <?php echo (!empty($symptoms_err)) ? 'has-error' : ''; ?>">
-                <label>Symptoms</label>
-                <textarea name="symptoms" cols="100" rows="5" class="form-control" value="<?php echo $symptoms; ?>"></textarea>
-                <span class="help-block"><?php echo $symptoms_err; ?></span>
+            <div class="form-group <?php echo (!empty($doctorEmail_err)) ? 'has-error' : ''; ?>">
+                <label>Email</label>
+                <input type="text" name="doctorEmail" class="form-control" value="<?php echo $doctorEmail; ?>">
+                <span class="help-block"><?php echo $doctorEmail_err; ?></span>
+            </div>    
+            <div class="form-group <?php echo (!empty($doctorPassword_err)) ? 'has-error' : ''; ?>">
+                <label>Password</label>
+                <input type="password" name="doctorPassword" class="form-control" value="<?php echo $doctorPassword; ?>">
+                <span class="help-block"><?php echo $doctorPassword_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($explanation_err)) ? 'has-error' : ''; ?>">
-                <label>Explanation</label>
-                <textarea name="explanation" cols="100" rows="5" class="form-control" value="<?php echo $explanation; ?>"></textarea>
-                <span class="help-block"><?php echo $explanation_err; ?></span>
+            <div class="form-group <?php echo (!empty($doctorName_err)) ? 'has-error' : ''; ?>">
+                <label>Name</label>
+                <input type="text" name="doctorName" class="form-control" value="<?php echo $doctorName; ?>">
+                <span class="help-block"><?php echo $doctorName_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($treatments_err)) ? 'has-error' : ''; ?>">
-                <label>Treatments</label>
-                <textarea name="treatments" cols="100" rows="5" class="form-control" value="<?php echo $treatments; ?>"></textarea>
-                <span class="help-block"><?php echo $treatments_err; ?></span>
+            <div class="form-group <?php echo (!empty($doctorSpecialty_err)) ? 'has-error' : ''; ?>">
+                <label>Specialty</label>
+                <input type="text" name="doctorSpecialty" class="form-control" value="<?php echo $doctorSpecialty; ?>">
+                <span class="help-block"><?php echo $doctorSpecialty_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($doctorPhone_err)) ? 'has-error' : ''; ?>">
+                <label>Phone Number</label>
+                <input type="text" name="doctorPhone" class="form-control" value="<?php echo $doctorPhone; ?>">
+                <span class="help-block"><?php echo $doctorPhone_err; ?></span>
             </div>
             <input type="submit" class="btn btn-primary" value="Submit">
             <input type="reset" class="btn btn-default" value="Reset">
-            <a href="managediagnosis.php">
+            <a href="managedoctor.php">
             <input type="button" class="btn btn-primary" value="Back">
             </a>
         </form>
