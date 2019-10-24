@@ -21,7 +21,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT consultationID, patientID, consultationDate, symptoms, history, treatments, doctorID FROM consultation";
+$sql = "SELECT consultationID, consultationDate, symptoms, history, diagnosis, treatments, suggestion FROM consultation";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -45,21 +45,23 @@ if ($result->num_rows > 0) {
   <table class="table" width="80%" style="margin-top: 20px" align="center">
     <tr>
       <th>Consultation ID</th>
-      <th>Patient ID</th>
-      <th>Consultation Date</th>
+      <th>Date</th>
       <th>Symptoms</th>
       <th>History</th>
-      <th>Solutions</th>
+      <th>Diagnosis</th>
+      <th>Treatments</th>
+      <th>Suggestion</th>
       <th>&nbsp;</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)){ ?>
     <tr>
       <td><?php echo $row['consultationID']; ?></td>
-      <td><?php echo $row['patientID']; ?></td>
       <td><?php echo $row['consultationDate']; ?></td>
       <td><?php echo $row['symptoms']; ?></td>
       <td><?php echo $row['history']; ?></td>
-      <td><?php echo $row['solutions']; ?></td>
+      <td><?php echo $row['diagnosis']; ?></td>
+      <td><?php echo $row['treatments']; ?></td>
+      <td><?php echo $row['suggestion']; ?></td>
       <td><input type="button" value="Print" onClick="window.print()"></td>
     </tr>
     <?php } ?>
@@ -98,8 +100,6 @@ $conn->close();
 </head>
 <body>
   <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-5">
-
-    
 
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

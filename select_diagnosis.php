@@ -12,6 +12,7 @@ $dbname = "fertility";
 
 	$diagnosis = trim($_POST['diagnosis']);
 	$treatments = trim($_POST['treatments']);
+	
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -20,11 +21,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$query = "UPDATE consultation SET  
-	diagnosis = '$[diagnosis]',
-	treatments = '$[treatments]',
-	WHERE consultationID = '$consultationID'";
-	
+$query = "INSERT INTO consultation (diagnosis, treatments)
+			SELECT diagnosis, treatments FROM diagnosisDB";
+
 
 	// two cases for fie , if file submit is on => change a lot
 	$result = mysqli_query($conn, $query);

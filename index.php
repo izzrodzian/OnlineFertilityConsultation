@@ -43,7 +43,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="index.php">
-                         <img src="assets/images/mbr-1-122x122.jpg" alt="Online Fertility Consultation" title="Online Fertility Consultation" style="height: 3.8rem;">
+                         <img src="assets/images/mbr-1-122x122.jpg" alt="Online Fertility Consultation" title="Online Fertility Consultation" style="height: 3rem;">
                     </a>
                 </span>
                  <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="index.php">ONLINE FERTILITY CONSULTATION</a></span>
@@ -131,7 +131,7 @@
                     <div class="card-box">
                         <h4 class="card-title mbr-fonts-style display-7">
                             Frequently Asked Question (FAQ)</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">Find out more regading the questions always been asked related to the fertility problems.</p>
+                        <p class="mbr-text mbr-fonts-style display-7">Find out more regading the questions on fertility.</p>
                     </div>
                     <div class="mbr-section-btn text-center"><a href="faq.php" class="btn btn-primary-outline display-4">Find Out More</a></div>
                 </div>

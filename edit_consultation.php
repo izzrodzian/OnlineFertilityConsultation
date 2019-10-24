@@ -34,8 +34,9 @@ $query = "UPDATE consultation SET
 	diagnosis = '$diagnosis',
 	treatments = '$treatments',
 	suggestion = '$suggestion',
-	doctorID = '$doctorID',
+	doctorID = '$doctorID'
 	WHERE consultationID = '$consultationID'";
+	
 	
 
 	// two cases for fie , if file submit is on => change a lot
@@ -44,7 +45,7 @@ $query = "UPDATE consultation SET
 		echo "Can't update data " . mysqli_error($conn);
 		exit;
 	} else {
-		header("Location: manageconsultation_edit.php?consultationID=consultationID");
+		header("Location: manageconsultation_edit.php?consultationID=$consultationID");
 	}
 
 $conn->close();

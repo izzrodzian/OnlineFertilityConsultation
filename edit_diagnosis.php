@@ -11,6 +11,7 @@ $dbname = "fertility";
 	}
 
 	$diagnosisID = trim($_POST['diagnosisID']);
+	$diagnosis = trim($_POST['diagnosis']);
 	$symptoms = trim($_POST['symptoms']);
 	$explanation = trim($_POST['explanation']);
 	$treatments = trim($_POST['treatments']);
@@ -24,16 +25,17 @@ if ($conn->connect_error) {
 
 $query = "UPDATE diagnosisDB SET  
 	diagnosisID = '$diagnosisID', 
+	diagnosis = '$diagnosis', 
 	symptoms = '$symptoms', 
 	explanation = '$explanation',
-	treatments = '$treatments',
+	treatments = '$treatments'
 	WHERE diagnosisID = '$diagnosisID'";
 	
 
 	// two cases for fie , if file submit is on => change a lot
 	$result = mysqli_query($conn, $query);
 	if(!$result){
-		echo "Can't update data"; . mysqli_error($conn);
+		echo "Can't update data " . mysqli_error($conn);
 		exit;
 	} else {
 		header("Location: managediagnosis.php?diagnosisID=$diagnosisID");

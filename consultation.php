@@ -1,5 +1,8 @@
 <?php
 
+// Include config file
+require_once "config.php";
+
 // Initialize the session
 session_start();
  
@@ -9,27 +12,69 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "fertility";
+// Define variables and initialize with empty values
+$symptoms = $history = "";
+$symptoms_err = $history_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+  // Validate symptoms
+    $input_symptoms = trim($_POST["symptoms"]);
+    if(empty($input_symptoms)){
+        $symptoms_err = "Please enter related symptoms.";     
+    } else{
+        $symptoms = $input_symptoms;
+    }
+    
+   
+    // Validate symptoms
+    $input_symptoms = trim($_POST["symptoms"]);
+    if(empty($input_symptoms)){
+        $symptoms_err = "Please enter related symptoms.";     
+    } else{
+        $symptoms = $input_symptoms;
+    }
+    
+    // Validate history
+    $input_history = trim($_POST["history"]);
+    if(empty($input_history)){
+        $history_err = "Please enter related history.";     
+    } else{
+        $history = $input_history;
+    }
+    
+    // Check input errors before inserting in database
+    if(empty($symptoms_err) && empty($history_err)){
+        // Prepare an insert statement
+        $sql = "INSERT INTO consultation (symptoms, history) VALUES (?, ?)";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_symptoms, $param_history);
+            
+            // Set parameters
+            $param_symptoms = $symptoms;
+            $param_history = $history;
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Records created successfully. Redirect to landing page
+                header("location: consultationhistory.php");
+                exit();
+            } else{
+                echo "Something went wrong. Please try again later.";
+            }
+        }
+         
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+    
+    // Close connection
+    mysqli_close($link);
+}
 
-//define variable
-$consultationDate = $symptoms = $history = "";
-
-$sql = "INSERT consultation (consultationDate, symptoms, history VALUES (?,?,?)";
-$result = $conn->query($sql);
-
-
-
-$conn->close();
 ?>
 
 
@@ -59,10 +104,7 @@ $conn->close();
   
 </head>
 <body>
-  <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-4">
-
-    
-
+ <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-4">
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
@@ -76,7 +118,7 @@ $conn->close();
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="index.html">
-                         <img src="assets/images/mbr-1-122x122.jpg" alt="Online Fertility Consultation" title="Online Fertility Consultation" style="height: 3.8;">
+                         <img src="assets/images/mbr-1-122x122.jpg" alt="Online Fertility Consultation" title="Online Fertility Consultation" style="height: 3.8rem;">
                     </a>
                 </span>
                  <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="index.php">ONLINE FERTILITY CONSULTATION</a></span>
@@ -91,15 +133,14 @@ $conn->close();
 
                         Treatments</a><div class="dropdown-menu"><a class="dropdown-item text-white display-4" href="fertilitytests.php" aria-expanded="false">Fertility Tests</a><a class="dropdown-item text-white display-4" href="treatments.php" aria-expanded="false">Fertility Treatments</a><a class="dropdown-item text-white display-4" href="consultation.php" aria-expanded="false">Online Consultation</a></div></li><li class="nav-item"><a class="nav-link link text-white display-4" href="aboutus.php" aria-expanded="false"><span class="mobi-mbri mobi-mbri-file mbr-iconfont mbr-iconfont-btn"></span>
                         
-                        About Us</a></li><li class="nav-item dropdown open">
-                        <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true"><span class="mobi-mbri mobi-mbri-user-2 mbr-iconfont mbr-iconfont-btn"></span>
-                        My Account</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="patientdashboard.php">Dashboard</a><a class="text-white dropdown-item display-4" href="profile.php">Profile</a><a class="text-white dropdown-item display-4" href="consultationhistory.php" aria-expanded="false">Consultation History</a><a class="text-white dropdown-item display-4" href="logout.php" aria-expanded="false">Log Out</a></div>
+                        About Us</a>
+                </li><li class="nav-item dropdown open">
+                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true"><span class="mobi-mbri mobi-mbri-user-2 mbr-iconfont mbr-iconfont-btn"></span>
+                        Account</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="patientdashboard.php">Dashboard</a><a class="text-white dropdown-item display-4" href="profile.php">Profile</a><a class="text-white dropdown-item display-4" href="consultationhistory.php" aria-expanded="false">Consultation History</a><a class="text-white dropdown-item display-4" href="logout.php" aria-expanded="false">Log Out</a></div>
                 </li></ul>
-            
         </div>
     </nav>
 </section>
-
 
   <section class="engine"><a href="https://mobirise.info/d">web maker</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
@@ -117,6 +158,10 @@ $conn->close();
   </body>
 </html>
 
+ <br>
+ <br>
+ <br>
+ <br>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,23 +183,11 @@ $conn->close();
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Symptoms</label>
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Lower abdomen pain
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Pelvic pain
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Lower back pain
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Fatigue
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Night sweats
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Hot flashes
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Fever
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Headache
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Muscle aches
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Tiredness
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Loss of appetite
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Difficulties in chewing
-                <input type="checkbox" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">Veru salty-tasting skin
+                <input type="text" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">
             </div>    
             <div class="form-group">
                 <label>Brief History</label>
-                <textarea name="history" cols="20" rows="10" class="form-control" value="<?php echo $history; ?>"></textarea>
+                <input type="text" name="history" class="form-control" value="<?php echo $history; ?>">
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">

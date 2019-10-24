@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
 
   ?>
 
-  <style>
+<style>
 * {
   box-sizing: border-box;
 }
@@ -68,6 +68,7 @@ if ($result->num_rows > 0) {
   <br>
   <br>
   <center>
+    <form method="post" action="select_diagnosis.php" enctype="multipart/form-data">
 <table border="0">
 <tr>
   <td><img src="images/consultation.png" style="width:128px;height:128px;"></td>
@@ -89,10 +90,11 @@ if ($result->num_rows > 0) {
       
       <td><?php echo $row['symptoms']; ?></td>
       <td><?php echo $row['diagnosis']; ?></td>
-      <td><a href="manageconsultation_view.php?diagnosisID=<?php echo $row['diagnosisID'];?>"><input type="submit" value="Select"></a></td>
+      <td><input type="submit" name="save_change" value="Select"></a></td>
     </tr>
     <?php } ?>
   </table>
+</form>
 
   <script>
 function myFunction() {

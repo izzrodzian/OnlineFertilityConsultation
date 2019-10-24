@@ -63,9 +63,6 @@ $conn->close();
 </head>
 <body>
   <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-4">
-
-    
-
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
@@ -173,7 +170,7 @@ $conn->close();
       </form>
     </div> </center>
     <center>
-      <a href="profile_edit.php?patientID=<?php echo $row['patientID']; ?>"> <input type="button" class="btn btn-primary" value="Edit Profile"></a>
+      <a href="profile_edit.php?patientID=$patientID"> <input type="button" class="btn btn-primary" value="Edit Profile"></a>
       <a href="patientdashboard.php"> <input type="button" class="btn btn-primary" value="Back to Dashboard"></a>
       <br>
       <br>

@@ -4,24 +4,24 @@ require_once "config.php";
  
 // Define variables and initialize with empty values
 $patientEmail = $patientPassword = $patientName = $patientIC = $patientGender = $patientMaritalStatus = $patientPhone = "";
-$patientEmail_err = $patientPassword_err = $patientName_err = $patientIC_err = $patientGender_err = $patientMaritalStatus_err = $patientPhone_err "";
+$patientEmail_err = $patientPassword_err = $patientName_err = $patientIC_err = $patientGender_err = $patientMaritalStatus_err = $patientPhone_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate patient
-    if(empty(trim($_POST["doctorEmail"]))){
-        $doctorName_err = "Please enter your email.";
+    if(empty(trim($_POST["patientEmail"]))){
+        $patientEmail_err = "Please enter your email.";
     } else{
         // Prepare a select statement
-        $sql = "SELECT doctorID FROM doctor WHERE doctorEmail = ?";
+        $sql = "SELECT patientID FROM patient WHERE patientEmail = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_doctor);
+            mysqli_stmt_bind_param($stmt, "s", $param_patient);
             
             // Set parameters
-            $param_name = trim($_POST["doctorEmail"]);
+            $param_name = trim($_POST["patientEmail"]);
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -29,9 +29,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $doctorEmail_err = "This doctor already added.";
+                    $patientEmail_err = "This email already registered.";
                 } else{
-                    $doctorEmail = trim($_POST["doctorEmail"]);
+                    $patientEmail = trim($_POST["patientEmail"]);
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -43,56 +43,74 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Validate password
-    if(empty(trim($_POST["doctorPassword"]))){
-        $doctorPassword_err = "Please enter a password.";     
-    } elseif(strlen(trim($_POST["doctorPassword"])) < 6){
-        $doctorPassword_err = "Password must have atleast 6 characters.";
+    if(empty(trim($_POST["patientPassword"]))){
+        $patientPassword_err = "Please enter a password.";     
+    } elseif(strlen(trim($_POST["patientPassword"])) < 6){
+        $patientPassword_err = "Password must have atleast 6 characters.";
     } else{
-        $doctorPassword = trim($_POST["doctorPassword"]);
+        $patientPassword = trim($_POST["patientPassword"]);
       }
     
     // Validate name
-     if(empty(trim($_POST["doctorName"]))){
-        $doctorName_err = "Please your name.";     
+     if(empty(trim($_POST["patientName"]))){
+        $patientName_err = "Please enter your name.";     
     } else{
-        $doctorName = trim($_POST["doctorName"]);
+        $patientName = trim($_POST["patientName"]);
     }
 
-    // Validate specialty
-     if(empty(trim($_POST["doctorSpecialty"]))){
-        $doctorSpecialty_err = "Please enter your specialty.";     
+    // Validate IC
+     if(empty(trim($_POST["patientIC"]))){
+        $patientIC_err = "Please enter your IC number.";     
     } else{
-        $doctorSpecialty = trim($_POST["doctorSpecialty"]);
+        $patientIC = trim($_POST["patientIC"]);
     }
+
+    // Validate gender
+     if(empty(trim($_POST["patientGender"]))){
+        $patientGender_err= "Please select your gender.";     
+    } else{
+        $patientGender = trim($_POST["patientGender"]);
+    }
+
+
+    // Validate marital status
+     if(empty(trim($_POST["patientMaritalStatus"]))){
+        $patientMaritalStatus_err = "Please enter your marital status.";     
+    } else{
+        $patientMaritalStatus = trim($_POST["patientMaritalStatus"]);
+    }
+
 
      // Validate phone
-     if(empty(trim($_POST["doctorPhone"]))){
-        $doctorPhone_err= "Please your phone number.";     
+     if(empty(trim($_POST["patientPhone"]))){
+        $patientPhone_err= "Please enter your phone number.";     
     } else{
-        $doctorPhone = trim($_POST["doctorPhone"]);
+        $patientPhone = trim($_POST["patientPhone"]);
     }
 
     // Check input errors before inserting in database
-    if(empty($doctorEmail_err) && empty($doctorPassword_err) && empty($doctorName_err) && empty($doctorSpecialty_err) && empty($doctorPhone_err)){
+    if(empty($patientEmail_err) && empty($patientPassword_err) && empty($patientName_err) && empty($patientIC_err) && empty($patientGender_err) && empty($patientMaritalStatus_err) && empty($patientPhone_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO doctor (doctorEmail, doctorPassword, doctorName, doctorSpecialty, doctorPhone) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO patient (patientEmail, patientPassword, patientName, patientIC, patientGender, patientMaritalStatus, patientPhone) VALUES (?, ?, ?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssss", $param_doctorEmail, $param_doctorPassword, $param_doctorName, $param_doctorSpecialty, $param_doctorPhone);
+          mysqli_stmt_bind_param($stmt, "sssssss", $param_patientEmail, $param_patientPassword, $param_patientName, $param_patientIC, $param_patientGender, $param_patientMaritalStatus, $param_patientPhone);
             
             // Set parameters
-            $param_doctorEmail= $doctorEmail;
-            $param_doctorPassword = $doctorPassword;
-            $param_doctorName = $doctorName;
-            $param_doctorSpecialty = $doctorSpecialty;
-            $param_doctorPhone = $doctorPhone;
+            $param_patientEmail= $patientEmail;
+            $param_patientPassword = $patientPassword;
+            $param_patientName = $patientName;
+            $param_patientIC = $patientIC;
+            $param_patientGender = $patientGender;
+            $param_patientMaritalStatus = $patientMaritalStatus;
+            $param_patientPhone = $patientPhone;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Redirect to manage doctor page
-                header("location: managedoctor.php");
+                // Redirect to login page
+                header("location: login.php");
             } else{
                 echo "Something went wrong. Please try again later.";
             }
@@ -118,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <link rel="shortcut icon" href="assets/images/mbr-1-122x122.jpg" type="image/x-icon">
   <meta name="description" content="Site Builder Description">
   
-  <title>Add New Doctor</title>
+  <title>Register</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -133,46 +151,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   
 </head>
 <body>
-  <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-5">
-
-    
-
-    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
-        <div class="menu-logo">
-            <div class="navbar-brand">
-                <span class="navbar-logo">
-                    <a href="index.html">
-                         <img src="assets/images/mbr-1-122x122.jpg" alt="Online Fertility Consultation" title="Online Fertility Consultation" style="height: 3.8rem;">
-                    </a>
-                </span>
-                 <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="index.php">ONLINE FERTILITY CONSULTATION</a></span>
-            </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="index.php"><span class="mobi-mbri mobi-mbri-home mbr-iconfont mbr-iconfont-btn"></span>
-                        Home</a>
-                </li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false"><span class="mobi-mbri mobi-mbri-idea mbr-iconfont mbr-iconfont-btn"></span>
-                        Planning for Pregnancy</a><div class="dropdown-menu"><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false">How to Get Pregnant</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="insightsprogram.php">Fertility Insights Program</a><a class="text-white dropdown-item display-4" href="prepregnancy.php" aria-expanded="false">Prepregnancy Health</a><a class="text-white dropdown-item display-4" href="fertilitycalculation.php" aria-expanded="false">Fertile Window Calculation</a><a class="text-white dropdown-item display-4" href="chromosomal.php" aria-expanded="false">Chromosomal Abnormalities</a><a class="text-white dropdown-item display-4" href="bmi.php" aria-expanded="false">BMI for Pregnancy</a><a class="text-white dropdown-item display-4" href="assessment.php" aria-expanded="false">Fertility Assessment</a></div></div><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" aria-expanded="false" data-toggle="dropdown-submenu">Female Fertility</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="menstrual.php" aria-expanded="false">Menstrual Cycle</a><a class="text-white dropdown-item display-4" href="contraception.php" aria-expanded="false">Effects of Contraception</a><a class="text-white dropdown-item display-4" href="age.php" aria-expanded="false">Effect of Age</a><a class="text-white dropdown-item display-4" href="endometriosis.php" aria-expanded="false">Endometriosis</a><a class="text-white dropdown-item display-4" href="fibroids.php" aria-expanded="false">Fibroids</a><a class="text-white dropdown-item display-4" href="pcos.php" aria-expanded="false">PCOS</a><a class="text-white dropdown-item display-4" href="prevpregnancies.php" aria-expanded="false">Previous Pregnancies</a><a class="text-white dropdown-item display-4" href="blockeedtubes.php" aria-expanded="false">Blocked Fallopian Tubes</a></div></div><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" aria-expanded="false" data-toggle="dropdown-submenu">Male Fertility</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="abnormal.php" aria-expanded="false">Abnormal Sperm Production</a><a class="text-white dropdown-item display-4" href="malefertility.php" aria-expanded="false">Male Fertility Predictor</a></div></div><a class="text-white dropdown-item display-4" href="miscarriage.php" aria-expanded="false">About Miscarriage</a><a class="text-white dropdown-item display-4" href="infertility.php" aria-expanded="false">About Infertility</a></div></li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false"><span class="mobi-mbri mobi-mbri-contact-form mbr-iconfont mbr-iconfont-btn"></span>
-
-                        Treatments</a><div class="dropdown-menu"><a class="dropdown-item text-white display-4" href="fertilitytests.php" aria-expanded="false">Fertility Tests</a><a class="dropdown-item text-white display-4" href="treatments.php" aria-expanded="false">Fertility Treatments</a><a class="dropdown-item text-white display-4" href="consultation.php" aria-expanded="false">Online Consultation</a></div></li><li class="nav-item"><a class="nav-link link text-white display-4" href="aboutus.php" aria-expanded="false"><span class="mobi-mbri mobi-mbri-file mbr-iconfont mbr-iconfont-btn"></span>
-                        
-                        About Us</a>
-                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.php"><span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn"></span>
-                        
-                        Log Out</a></li></ul>
-        </div>
-    </nav>
-</section>
-
+  
 
   <section class="engine"><a href="https://mobirise.info/j">website templates</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
@@ -196,7 +175,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add New Doctor</title>
+    <title>Register</title>
     <style type="text/css">
         body{  }
         .wrapper{ width: 550px; padding: 20px; }
@@ -208,37 +187,47 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <br>
   <br>
     <center><div class="wrapper">
-        <h2>Add New Doctor</h2>
-        <p>Please fill this form to add new doctor.</p>
+        <h2>Register</h2>
+        <p>Please fill this form to register.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($doctorEmail_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($patientEmail_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
-                <input type="text" name="doctorEmail" class="form-control" value="<?php echo $doctorEmail; ?>">
-                <span class="help-block"><?php echo $doctorEmail_err; ?></span>
+                <input type="text" name="patientEmail" class="form-control" value="<?php echo $patientEmail; ?>">
+                <span class="help-block"><?php echo $patientEmail_err; ?></span>
             </div>    
-            <div class="form-group <?php echo (!empty($doctorPassword_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($patientPassword_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
-                <input type="password" name="doctorPassword" class="form-control" value="<?php echo $doctorPassword; ?>">
-                <span class="help-block"><?php echo $doctorPassword_err; ?></span>
+                <input type="password" name="patientPassword" class="form-control" value="<?php echo $patientPassword; ?>">
+                <span class="help-block"><?php echo $patientPassword_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($doctorName_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($patientName_err)) ? 'has-error' : ''; ?>">
                 <label>Name</label>
-                <input type="text" name="doctorName" class="form-control" value="<?php echo $doctorName; ?>">
-                <span class="help-block"><?php echo $doctorName_err; ?></span>
+                <input type="text" name="patientName" class="form-control" value="<?php echo $patientName; ?>">
+                <span class="help-block"><?php echo $patientName_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($doctorSpecialty_err)) ? 'has-error' : ''; ?>">
-                <label>Specialty</label>
-                <input type="text" name="doctorSpecialty" class="form-control" value="<?php echo $doctorSpecialty; ?>">
-                <span class="help-block"><?php echo $doctorSpecialty_err; ?></span>
+            <div class="form-group <?php echo (!empty($patientIC_err)) ? 'has-error' : ''; ?>">
+                <label>IC Number</label>
+                <input type="text" name="patientIC" class="form-control" value="<?php echo $patientIC; ?>">
+                <span class="help-block"><?php echo $patientIC_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($doctorPhone_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($patientGender_err)) ? 'has-error' : ''; ?>">
+                <label>Gender</label>
+                <input type="text" name="patientGender" class="form-control" value="<?php echo $patientGender; ?>">
+                <span class="help-block"><?php echo $patientGender_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($patientMaritalStatus_err)) ? 'has-error' : ''; ?>">
+                <label>Marital Status</label>
+                <input type="text" name="patientMaritalStatus" class="form-control" value="<?php echo $patientMaritalStatus; ?>">
+                <span class="help-block"><?php echo $patientMaritalStatus_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($patientPhone_err)) ? 'has-error' : ''; ?>">
                 <label>Phone Number</label>
-                <input type="text" name="doctorPhone" class="form-control" value="<?php echo $doctorPhone; ?>">
-                <span class="help-block"><?php echo $doctorPhone_err; ?></span>
+                <input type="text" name="patientPhone" class="form-control" value="<?php echo $patientPhone; ?>">
+                <span class="help-block"><?php echo $patientPhone_err; ?></span>
             </div>
             <input type="submit" class="btn btn-primary" value="Submit">
             <input type="reset" class="btn btn-default" value="Reset">
-            <a href="managedoctor.php">
+            <a href="login.php">
             <input type="button" class="btn btn-primary" value="Back">
             </a>
         </form>
