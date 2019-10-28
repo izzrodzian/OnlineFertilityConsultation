@@ -12,7 +12,7 @@
   <link rel="shortcut icon" href="assets/images/mbr-1-122x122.jpg" type="image/x-icon">
   <meta name="description" content="Website Generator Description">
   
-  <title>Fertility Tests</title>
+  <title>BMI Calculator</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -47,10 +47,10 @@
                          <img src="assets/images/mbr-1-122x122.jpg" alt="Online Fertility Consultation" title="Online Fertility Consultation" style="height: 3.8rem;">
                     </a>
                 </span>
-                 <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="index.php">ONLINE FERTILITY CONSULTATION</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="index.php">ONLINE FERTILITY CONSULTATION</a></span>
             </div>
         </div>
-       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
                     <a class="nav-link link text-white display-4" href="index.php"><span class="mobi-mbri mobi-mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                         Home</a>
@@ -64,8 +64,78 @@
     </nav>
 </section>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+  <h1><font color="#3377A9">BMI Calculator</font></h1>
 
-  <section class="engine"><a href="https://mobirise.info/d">site maker</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <br>
+  <br>
+
+<form>
+    <input id="weight" type="text" placeholder="Your weight in kilograms" />
+    <br>
+    <br>
+    <input id="height" type="text" placeholder="Your height in meters" />
+    <br>
+    <br>
+    
+    <input class = "submit" type="button"  value="Submit" onclick="bmi()" />
+    <br><br>
+    <p id="result">Here will be your result</p>
+</form>
+
+
+<script>
+function bmi () {
+var height = Number(document.getElementById("height").value);
+var weight = Number(document.getElementById("weight").value);
+var result = weight / (height * height);
+document.getElementById("result").innerHTML = "Your bmi score is : " + result;
+}
+
+</script>
+</center>
+
+<br>
+<br>
+
+<center>
+ <table class="table" style="margin-top: 20px; width: 50%;" align="center">
+<tr>
+  <th>BMI</th>
+  <th>Weight Status</th>
+</tr>
+<tr>
+  <td>Below 18.5</td>
+  <td>Underweight</td>
+</tr>
+<tr>
+  <td>18.5-24.9</td>
+  <td>Normal</td>
+</tr>
+<tr>
+  <td>25.0-29.9</td>
+  <td>Overweight</td>
+</tr>
+<tr>
+  <td>30.0 and above</td>
+  <td>Obese</td>
+</tr>
+</table>
+</center>
+
+<br>
+<br>
+<br>
+
+
+  <section class="engine"><a href="https://mobirise.info/e">make a website</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -79,49 +149,4 @@
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
   </body>
-</html>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-  <style type="text/css">
-    td {
-  text-align: center;}
-  </style>
-</head>
-<body>
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-
-<center>
-<h1><font color="#3377A9">Fertility Tests</font></h1></center>
-
-<br>
-<br>
-<br>
-
-<center>
-<table border="0">
-<tr>
-  <td><img src="images/calendar.png" style="width:128px;height:128px;"></td>
-  <td><img src="images/calculator.png" style="width:128px;height:128px;"></td>
-</tr>
-<tr>
-<td><a href="fertilitycalculator.php">
-  <input type="button" class="btn btn-primary" value="Fertility Calculator">
-</a></td>
-<td><a href="bmicalculator.php">
-  <input type="button" class="btn btn-primary" value="BMI Calculator">
-</a></td>
-</tr>
-</table>
-</center>
-
-</body>
 </html>
