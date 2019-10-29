@@ -12,69 +12,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-// Define variables and initialize with empty values
-$symptoms = $history = "";
-$symptoms_err = $history_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-  // Validate symptoms
-    $input_symptoms = trim($_POST["symptoms"]);
-    if(empty($input_symptoms)){
-        $symptoms_err = "Please enter related symptoms.";     
-    } else{
-        $symptoms = $input_symptoms;
-    }
-    
-   
-    // Validate symptoms
-    $input_symptoms = trim($_POST["symptoms"]);
-    if(empty($input_symptoms)){
-        $symptoms_err = "Please enter related symptoms.";     
-    } else{
-        $symptoms = $input_symptoms;
-    }
-    
-    // Validate history
-    $input_history = trim($_POST["history"]);
-    if(empty($input_history)){
-        $history_err = "Please enter related history.";     
-    } else{
-        $history = $input_history;
-    }
-    
-    // Check input errors before inserting in database
-    if(empty($symptoms_err) && empty($history_err)){
-        // Prepare an insert statement
-        $sql = "INSERT INTO consultation (symptoms, history) VALUES (?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_symptoms, $param_history);
-            
-            // Set parameters
-            $param_symptoms = $symptoms;
-            $param_history = $history;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Records created successfully. Redirect to landing page
-                header("location: consultationhistory.php");
-                exit();
-            } else{
-                echo "Something went wrong. Please try again later.";
-            }
-        }
-         
-        // Close statement
-        mysqli_stmt_close($stmt);
-    }
-    
-    // Close connection
-    mysqli_close($link);
-}
-
 ?>
 
 
@@ -242,77 +179,138 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <td><input type="radio" id="pcos8"  name="answer9" value="yes"></td>
     </tr>
     
-    <!-- CONTINUE HERE -->
     <tr>
-      <td>Did you feel persistent abdominal discomfort, such as cramps, gas or pain<p id="sym11"required></p></td>
-      <td><input type="radio" id="t21"  name="answer6" value="yes"></td>
-      <td><input type="radio" id="t22"  name="answer6" value="yes"></td>
-      </tr>
-      
-    <tr>
-      <td>Did you have lump in the underarm area?<p id="sym12"required></p></td>
-      <td><input type="radio" id="s21"  name="answer05" value="yes"></td>
-      <td><input type="radio" id="s22"  name="answer05" value="yes"></td>
-      </tr>
+      <td>Feeling tired, feeling down or depressed<p id="symptom10"required></p></td>
+      <td><input type="radio" id="thyroid1"  name="answer10" value="yes"></td>
+      <td><input type="radio" id="thyroid2"  name="answer10" value="yes"></td>
+    </tr>
       
     <tr>
-      <td>Did you have shortness of breath?<p id="sym13"required></p></td>
-      <td><input type="radio" id="s25"  name="answer7" value="yes"></td>
-      <td><input type="radio" id="s26"  name="answer7" value="yes"></td>
-      </tr>
+      <td>Feeling cold, weakness and aches in muscles and joints,<p id="symptom11"required></p></td>
+      <td><input type="radio" id="thyroid3"  name="answer11" value="yes"></td>
+      <td><input type="radio" id="thyroid4"  name="answer11" value="yes"></td>
+    </tr>
       
     <tr>
-      <td>Have you unexplained weight loss?<p id="sym14"required></p></td>
-      <td><input type="radio" id="s29"  name="answer8" value="yes"></td>
-      <td><input type="radio" id="s30"  name="answer8" value="yes"></td>
-      </tr>
+      <td>Thinning hair or hair loss<p id="symptom12"required></p></td>
+      <td><input type="radio" id="thyroid5"  name="answer12" value="yes"></td>
+      <td><input type="radio" id="thyroid6"  name="answer12" value="yes"></td>
+    </tr>
       
     <tr>
-      <td>Did you have persistent chest pain?<p id="sym15"required></p></td>
-      <td><input type="radio" id="s33"  name="answer9" value="yes"></td>
-      <td><input type="radio" id="s34"  name="answer9" value="yes"></td>
-      </tr>
+      <td>Trouble concentrating or remembering<p id="symptom13"required></p></td>
+      <td><input type="radio" id="thyroid7"  name="answer13" value="yes"></td>
+      <td><input type="radio" id="thyroid8"  name="answer13" value="yes"></td>
+    </tr>
       
     <tr>
-      <td>Have your periods heavier and of longer duration than usual?<p id="sym16"required></p></td>
-      <td><input type="radio" id="t25"  name="answer10" value="yes"></td>
-      <td><input type="radio" id="t26"  name="answer10" value="yes"></td>
-      </tr>
-      
-      <tr>
-      <td>Difficulty swallowing or pain while swallowing<p id="sym17"required></p></td>
-      <td><input type="radio" id="s37"  name="answer06" value="yes"></td>
-      <td><input type="radio" id="s38"  name="answer06" value="yes"></td>
-      </tr>
-      
-      <tr>
-      <td>Swelling of the face, arms or neck<p id="sym18"required></p></td>
-      <td><input type="radio" id="t37"  name="answer07" value="yes"></td>
-      <td><input type="radio" id="t38"  name="answer07" value="yes"></td>
-      </tr>
+      <td>Unexplained or excessive sweating<p id="symptom14"required></p></td>
+      <td><input type="radio" id="hormonal1"  name="answer14" value="yes"></td>
+      <td><input type="radio" id="hormonal2"  name="answer14" value="yes"></td>
+    </tr>
       
     <tr>
-      <td>Did you have multiple sexual partners?<p id="sym19"required></p></td>
-      <td><input type="radio" id="s41"  name="answer11" value="yes"></td>
-      <td><input type="radio" id="s42"  name="answer11" value="yes"></td>
-      </tr>
-      
-    <tr>
-      <td>Did you have bleeding between periods?<p id="sym20"required></p></td>
-      <td><input type="radio" id="s45"  name="answer12" value="yes"></td>
-      <td><input type="radio" id="s46"  name="answer12" value="yes"></td>
-      </tr>
+      <td>Changes in blood pressure, changes in heart rate or changes in blood sugar concentration<p id="symptom15"required></p></td>
+      <td><input type="radio" id="hormonal3"  name="answer15" value="yes"></td>
+      <td><input type="radio" id="hormonal4"  name="answer15" value="yes"></td>
+    </tr>
   
-              </div>
-
+      <tr>
+      <td>Needing to go to the bathroom more or less than usual<p id="symptom16"required></p></td>
+      <td><input type="radio" id="hormonal7"  name="answer16" value="yes"></td>
+      <td><input type="radio" id="hormonal8"  name="answer16" value="yes"></td>
+    </tr>
+      
+      <tr>
+      <td>Bloating or changes in appetite<p id="symptom17"required></p></td>
+      <td><input type="radio" id="hormonal7"  name="answer17" value="yes"></td>
+      <td><input type="radio" id="hormonal8"  name="answer17" value="yes"></td>
+    </tr>
+      
     </table>
         <br>
-        <div class="w3-bar">
-          <button onclick="myFunction()" class="button button3" name="compare"type="submit">Compare</button>      
+        <div>
+          <input type="button" onclick="myFunction()" class="btn btn-primary" name="submit" value="Submit">
+          <br><br>
           <p id="demo"></p>         
         </div>
       </div>
     </div>
+
+    <script>
+      function myFunction() {
+          
+          var symptom1=document.getElementById("symptom1").value;
+          
+          var symptom2=document.getElementById("symptom2").value;
+          
+          var symptom3=document.getElementById("symptom3").value;
+          
+          var symptom4=document.getElementById("symptom4").value;
+          
+          var symptom5=document.getElementById("symptom5").value;
+          
+          var symptom6=document.getElementById("symptom6").value;
+          
+          var symptom7=document.getElementById("symptom7").value;
+          
+          var symptom8=document.getElementById("symptom8").value;
+          
+          var symptom9=document.getElementById("symptom9").value;
+          
+          var symptom10=document.getElementById("symptom10").value;
+          
+          var symptom11=document.getElementById("symptom11").value;
+          
+          var symptom12=document.getElementById("symptom12").value;
+          
+          var symptom13=document.getElementById("symptom13").value;
+          
+          var symptom14=document.getElementById("symptom14").value;
+          
+          var symptom15=document.getElementById("symptom15").value;
+          
+          var symptom16=document.getElementById("symptom16").value;
+          
+          var symptom17=document.getElementById("symptom17").value;
+          
+          var text; 
+          
+          var cyst = "Cystic Fibrosis";
+          var pcos = "Polycystic Ovary Syndrome (PCOS)";
+          var thyroid = "Thyroid Problems";
+          var hormonal = "Hormonal Imbalance";
+
+          if((document.getElementById('cyst1').checked)&&(document.getElementById('cyst3').checked)&&(document.getElementById('cyst5').checked)&&(document.getElementById('cyst7').checked)&&(document.getElementById('cyst9').checked)&&(document.getElementById('pcos2').checked)&&(document.getElementById('pcos4').checked)&&(document.getElementById('pcos6').checked)&&(document.getElementById('pcos8').checked)&&(document.getElementById('thyroid2').checked)&&(document.getElementById('thyroid4').checked)&&(document.getElementById('thyroid6').checked)&&(document.getElementById('thyroid8').checked)&&(document.getElementById('hormonal2').checked)&&(document.getElementById('hormonal4').checked)&&(document.getElementById('hormonal6').checked)&&(document.getElementById('hormonal8').checked))
+            {
+              text = "Your have symptom of  "+cyst;
+            }
+          else if((document.getElementById('cyst2').checked)&&(document.getElementById('cyst4').checked)&&(document.getElementById('cyst6').checked)&&(document.getElementById('cyst8').checked)&&(document.getElementById('cyst10').checked)&&(document.getElementById('pcos1').checked)&&(document.getElementById('pcos3').checked)&&(document.getElementById('pcos5').checked)&&(document.getElementById('pcos7').checked)&&(document.getElementById('thyroid2').checked)&&(document.getElementById('thyroid4').checked)&&(document.getElementById('thyroid6').checked)&&(document.getElementById('thyroid8').checked)&&(document.getElementById('hormonal2').checked)&&(document.getElementById('hormonal4').checked)&&(document.getElementById('hormonal6').checked)&&(document.getElementById('hormonal8').checked))
+            {
+              text = "Your have symptom of  "+pcos;
+            }
+          else if((document.getElementById('cyst2').checked)&&(document.getElementById('cyst4').checked)&&(document.getElementById('cyst6').checked)&&(document.getElementById('cyst8').checked)&&(document.getElementById('cyst10').checked)&&(document.getElementById('pcos2').checked)&&(document.getElementById('pcos4').checked)&&(document.getElementById('pcos6').checked)&&(document.getElementById('pcos8').checked)&&(document.getElementById('thyroid1').checked)&&(document.getElementById('thyroid3').checked)&&(document.getElementById('thyroid5').checked)&&(document.getElementById('thyroid7').checked)&&(document.getElementById('hormonal2').checked)&&(document.getElementById('hormonal4').checked)&&(document.getElementById('hormonal6').checked)&&(document.getElementById('hormonal8').checked))
+            {
+              text = "Your have symptom of  "+thyroid;
+            }
+          else if((document.getElementById('cyst2').checked)&&(document.getElementById('cyst4').checked)&&(document.getElementById('cyst6').checked)&&(document.getElementById('cyst8').checked)&&(document.getElementById('cyst10').checked)&&(document.getElementById('pcos2').checked)&&(document.getElementById('pcos4').checked)&&(document.getElementById('pcos6').checked)&&(document.getElementById('pcos8').checked)&&(document.getElementById('thyroid2').checked)&&(document.getElementById('thyroid4').checked)&&(document.getElementById('thyroid6').checked)&&(document.getElementById('thyroid8').checked)&&(document.getElementById('hormonal1').checked)&&(document.getElementById('hormonal3').checked)&&(document.getElementById('hormonal5').checked)&&(document.getElementById('hormonal7').checked))
+            {
+              text = "Your have symptom of  "+hormonal;
+            }
+          else {                
+                text = "No diagnosis related to the symptom, proceed to details consultation" +link("http://localhost/OnlineFertilityConsultation/consultation.php");
+            }
+            
+        
+          
+            document.getElementById("demo").innerHTML = text;
+          
+        }
+
+    </script>
+
+    <br>
+    <br>
     </center>   
 </body>
 </html>
