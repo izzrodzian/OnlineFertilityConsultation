@@ -13,18 +13,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 // Define variables and initialize with empty values
-$symptoms = $history = "";
-$symptoms_err = $history_err = "";
+$consultationDate = $symptoms = $history = "";
+$consultationDate_err = $symptoms_err = $history_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-  // Validate symptoms
-    $input_symptoms = trim($_POST["symptoms"]);
-    if(empty($input_symptoms)){
-        $symptoms_err = "Please enter related symptoms.";     
+  // Validate sdate
+    $input_date = trim($_POST["consultationDate"]);
+    if(empty($input_date)){
+        $consultationDate_err = "Please enter today's date.";     
     } else{
-        $symptoms = $input_symptoms;
+        $consultationDate = $input_date;
     }
     
    
@@ -45,15 +45,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Check input errors before inserting in database
-    if(empty($symptoms_err) && empty($history_err)){
+    if(empty($consultationDate_err)  &&  empty($symptoms_err) && empty($history_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO consultation (symptoms, history) VALUES (?, ?)";
+        $sql = "INSERT INTO consultation (consultationDate, symptoms, history) VALUES (?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_symptoms, $param_history);
+            mysqli_stmt_bind_param($stmt, "sss", $param_date, $param_symptoms, $param_history);
             
             // Set parameters
+            $param_date = $consultationDate;
             $param_symptoms = $symptoms;
             $param_history = $history;
             
@@ -131,17 +132,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false"><span class="mobi-mbri mobi-mbri-idea mbr-iconfont mbr-iconfont-btn"></span>
                         Planning for Pregnancy</a><div class="dropdown-menu"><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false">How to Get Pregnant</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="insightsprogram.php">Fertility Insights Program</a><a class="text-white dropdown-item display-4" href="prepregnancy.php" aria-expanded="false">Prepregnancy Health</a><a class="text-white dropdown-item display-4" href="fertilitycalculation.php" aria-expanded="false">Fertile Window Calculation</a><a class="text-white dropdown-item display-4" href="chromosomal.php" aria-expanded="false">Chromosomal Abnormalities</a><a class="text-white dropdown-item display-4" href="bmi.php" aria-expanded="false">BMI for Pregnancy</a><a class="text-white dropdown-item display-4" href="assessment.php" aria-expanded="false">Fertility Assessment</a></div></div><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" aria-expanded="false" data-toggle="dropdown-submenu">Female Fertility</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="menstrual.php" aria-expanded="false">Menstrual Cycle</a><a class="text-white dropdown-item display-4" href="contraception.php" aria-expanded="false">Effects of Contraception</a><a class="text-white dropdown-item display-4" href="age.php" aria-expanded="false">Effect of Age</a><a class="text-white dropdown-item display-4" href="endometriosis.php" aria-expanded="false">Endometriosis</a><a class="text-white dropdown-item display-4" href="fibroids.php" aria-expanded="false">Fibroids</a><a class="text-white dropdown-item display-4" href="pcos.php" aria-expanded="false">PCOS</a><a class="text-white dropdown-item display-4" href="prevpregnancies.php" aria-expanded="false">Previous Pregnancies</a><a class="text-white dropdown-item display-4" href="blockeedtubes.php" aria-expanded="false">Blocked Fallopian Tubes</a></div></div><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" aria-expanded="false" data-toggle="dropdown-submenu">Male Fertility</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="abnormal.php" aria-expanded="false">Abnormal Sperm Production</a><a class="text-white dropdown-item display-4" href="malefertility.php" aria-expanded="false">Male Fertility Predictor</a></div></div><a class="text-white dropdown-item display-4" href="miscarriage.php" aria-expanded="false">About Miscarriage</a><a class="text-white dropdown-item display-4" href="infertility.php" aria-expanded="false">About Infertility</a></div></li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false"><span class="mobi-mbri mobi-mbri-contact-form mbr-iconfont mbr-iconfont-btn"></span>
 
-                        Treatments</a><div class="dropdown-menu"><a class="dropdown-item text-white display-4" href="fertilitytests.php" aria-expanded="false">Fertility Tests</a><a class="dropdown-item text-white display-4" href="treatments.php" aria-expanded="false">Fertility Treatments</a><a class="dropdown-item text-white display-4" href="consultation.php" aria-expanded="false">Online Consultation</a></div></li><li class="nav-item"><a class="nav-link link text-white display-4" href="aboutus.php" aria-expanded="false"><span class="mobi-mbri mobi-mbri-file mbr-iconfont mbr-iconfont-btn"></span>
+                        Treatments</a><div class="dropdown-menu"><a class="dropdown-item text-white display-4" href="fertilitytests.php" aria-expanded="false">Fertility Tests</a><a class="dropdown-item text-white display-4" href="treatments.php" aria-expanded="false">Fertility Treatments</a><a class="dropdown-item text-white display-4" href="earlydiagnosis.php" aria-expanded="false">Online Consultation</a></div></li><li class="nav-item"><a class="nav-link link text-white display-4" href="aboutus.php" aria-expanded="false"><span class="mobi-mbri mobi-mbri-file mbr-iconfont mbr-iconfont-btn"></span>
                         
                         About Us</a>
                 </li><li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true"><span class="mobi-mbri mobi-mbri-user-2 mbr-iconfont mbr-iconfont-btn"></span>
-                        Account</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="patientdashboard.php">Dashboard</a><a class="text-white dropdown-item display-4" href="profile.php">Profile</a><a class="text-white dropdown-item display-4" href="consultationhistory.php" aria-expanded="false">Consultation History</a><a class="text-white dropdown-item display-4" href="logout.php" aria-expanded="false">Log Out</a></div>
+                        Account</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="patientdashboard.php">Dashboard</a><a class="text-white dropdown-item display-4" href="consultationhistory.php" aria-expanded="false">Consultation History</a><a class="text-white dropdown-item display-4" href="logout.php" aria-expanded="false">Log Out</a></div>
                 </li></ul>
         </div>
     </nav>
 </section>
-
   <section class="engine"><a href="https://mobirise.info/d">web maker</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
@@ -181,6 +181,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Consultation Form</h2>
         <p>Please fill in the form.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group">
+                <label>Date (format: yyyy-mm-dd)</label>
+                <input type="text" name="consultationDate" class="form-control" value="<?php echo $consultationDate; ?>">
+            </div> 
             <div class="form-group">
                 <label>Symptoms</label>
                 <input type="text" name="symptoms" class="form-control" value="<?php echo $symptoms; ?>">

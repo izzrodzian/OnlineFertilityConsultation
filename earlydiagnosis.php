@@ -68,12 +68,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false"><span class="mobi-mbri mobi-mbri-idea mbr-iconfont mbr-iconfont-btn"></span>
                         Planning for Pregnancy</a><div class="dropdown-menu"><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false">How to Get Pregnant</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="insightsprogram.php">Fertility Insights Program</a><a class="text-white dropdown-item display-4" href="prepregnancy.php" aria-expanded="false">Prepregnancy Health</a><a class="text-white dropdown-item display-4" href="fertilitycalculation.php" aria-expanded="false">Fertile Window Calculation</a><a class="text-white dropdown-item display-4" href="chromosomal.php" aria-expanded="false">Chromosomal Abnormalities</a><a class="text-white dropdown-item display-4" href="bmi.php" aria-expanded="false">BMI for Pregnancy</a><a class="text-white dropdown-item display-4" href="assessment.php" aria-expanded="false">Fertility Assessment</a></div></div><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" aria-expanded="false" data-toggle="dropdown-submenu">Female Fertility</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="menstrual.php" aria-expanded="false">Menstrual Cycle</a><a class="text-white dropdown-item display-4" href="contraception.php" aria-expanded="false">Effects of Contraception</a><a class="text-white dropdown-item display-4" href="age.php" aria-expanded="false">Effect of Age</a><a class="text-white dropdown-item display-4" href="endometriosis.php" aria-expanded="false">Endometriosis</a><a class="text-white dropdown-item display-4" href="fibroids.php" aria-expanded="false">Fibroids</a><a class="text-white dropdown-item display-4" href="pcos.php" aria-expanded="false">PCOS</a><a class="text-white dropdown-item display-4" href="prevpregnancies.php" aria-expanded="false">Previous Pregnancies</a><a class="text-white dropdown-item display-4" href="blockeedtubes.php" aria-expanded="false">Blocked Fallopian Tubes</a></div></div><div class="dropdown"><a class="text-white dropdown-item dropdown-toggle display-4" href="consultation.php" aria-expanded="false" data-toggle="dropdown-submenu">Male Fertility</a><div class="dropdown-menu dropdown-submenu"><a class="text-white dropdown-item display-4" href="abnormal.php" aria-expanded="false">Abnormal Sperm Production</a><a class="text-white dropdown-item display-4" href="malefertility.php" aria-expanded="false">Male Fertility Predictor</a></div></div><a class="text-white dropdown-item display-4" href="miscarriage.php" aria-expanded="false">About Miscarriage</a><a class="text-white dropdown-item display-4" href="infertility.php" aria-expanded="false">About Infertility</a></div></li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" href="consultation.php" data-toggle="dropdown-submenu" aria-expanded="false"><span class="mobi-mbri mobi-mbri-contact-form mbr-iconfont mbr-iconfont-btn"></span>
 
-                        Treatments</a><div class="dropdown-menu"><a class="dropdown-item text-white display-4" href="fertilitytests.php" aria-expanded="false">Fertility Tests</a><a class="dropdown-item text-white display-4" href="treatments.php" aria-expanded="false">Fertility Treatments</a><a class="dropdown-item text-white display-4" href="consultation.php" aria-expanded="false">Online Consultation</a></div></li><li class="nav-item"><a class="nav-link link text-white display-4" href="aboutus.php" aria-expanded="false"><span class="mobi-mbri mobi-mbri-file mbr-iconfont mbr-iconfont-btn"></span>
+                        Treatments</a><div class="dropdown-menu"><a class="dropdown-item text-white display-4" href="fertilitytests.php" aria-expanded="false">Fertility Tests</a><a class="dropdown-item text-white display-4" href="treatments.php" aria-expanded="false">Fertility Treatments</a><a class="dropdown-item text-white display-4" href="earlydiagnosis.php" aria-expanded="false">Online Consultation</a></div></li><li class="nav-item"><a class="nav-link link text-white display-4" href="aboutus.php" aria-expanded="false"><span class="mobi-mbri mobi-mbri-file mbr-iconfont mbr-iconfont-btn"></span>
                         
                         About Us</a>
                 </li><li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true"><span class="mobi-mbri mobi-mbri-user-2 mbr-iconfont mbr-iconfont-btn"></span>
-                        Account</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="patientdashboard.php">Dashboard</a><a class="text-white dropdown-item display-4" href="profile.php">Profile</a><a class="text-white dropdown-item display-4" href="consultationhistory.php" aria-expanded="false">Consultation History</a><a class="text-white dropdown-item display-4" href="logout.php" aria-expanded="false">Log Out</a></div>
+                        Account</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="patientdashboard.php">Dashboard</a><a class="text-white dropdown-item display-4" href="consultationhistory.php" aria-expanded="false">Consultation History</a><a class="text-white dropdown-item display-4" href="logout.php" aria-expanded="false">Log Out</a></div>
                 </li></ul>
         </div>
     </nav>
@@ -107,6 +107,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <style type="text/css">
         body{  }
         .wrapper{ width: 450px; padding: 20px; }
+        .myButton {
+          background-color: #38a670 !important;
+          border-color: #38a670 !important;
+          color: #ffffff !important;
+          padding: 20px;
+          display:block;
+          text-align:center;
+          position: absolute;
+          top: 90px;
+          right: 10px; }
+
     </style>
 </head>
 <body>
@@ -115,6 +126,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <br>
   <br>
     <center>
+      <a href="consultation.php" class="myButton">Skip to Detail Consultation</a>
       <h1><font color="#3377A9">Early Diagnosis</font></h1>
       <br><br>
 
@@ -230,9 +242,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </table>
         <br>
         <div>
-          <input type="button" onclick="myFunction()" class="btn btn-primary" name="submit" value="Submit">
-          <br><br>
-          <p id="demo"></p>         
+          <button onclick="myFunction()" class="btn btn-primary" name="compare"type="submit">Compare</button> 
+          <br><br>     
+          <p id="demo"></p>   
         </div>
       </div>
     </div>
@@ -276,29 +288,30 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
           
           var text; 
           
-          var cyst = "Cystic Fibrosis";
-          var pcos = "Polycystic Ovary Syndrome (PCOS)";
-          var thyroid = "Thyroid Problems";
-          var hormonal = "Hormonal Imbalance";
+          var cyst = "Cystic Fibrosis.";
+          var pcos = "Polycystic Ovary Syndrome (PCOS).";
+          var thyroid = "Thyroid Problems.";
+          var hormonal = "Hormonal Imbalance.";
+          var consult = "Proceed to details consultation.";
 
-          if((document.getElementById('cyst1').checked)&&(document.getElementById('cyst3').checked)&&(document.getElementById('cyst5').checked)&&(document.getElementById('cyst7').checked)&&(document.getElementById('cyst9').checked)&&(document.getElementById('pcos2').checked)&&(document.getElementById('pcos4').checked)&&(document.getElementById('pcos6').checked)&&(document.getElementById('pcos8').checked)&&(document.getElementById('thyroid2').checked)&&(document.getElementById('thyroid4').checked)&&(document.getElementById('thyroid6').checked)&&(document.getElementById('thyroid8').checked)&&(document.getElementById('hormonal2').checked)&&(document.getElementById('hormonal4').checked)&&(document.getElementById('hormonal6').checked)&&(document.getElementById('hormonal8').checked))
-            {
-              text = "Your have symptom of  "+cyst;
+          if((document.getElementById('cyst1').checked)&&(document.getElementById('cyst3').checked)&&(document.getElementById('cyst5').checked)&&(document.getElementById('cyst7').checked)&&(document.getElementById('cyst9').checked))
+          {
+              text = "Your have symptom of  "+cyst+" "+consult.link("http://localhost/OnlineFertilityConsultation/consultation.php");
             }
-          else if((document.getElementById('cyst2').checked)&&(document.getElementById('cyst4').checked)&&(document.getElementById('cyst6').checked)&&(document.getElementById('cyst8').checked)&&(document.getElementById('cyst10').checked)&&(document.getElementById('pcos1').checked)&&(document.getElementById('pcos3').checked)&&(document.getElementById('pcos5').checked)&&(document.getElementById('pcos7').checked)&&(document.getElementById('thyroid2').checked)&&(document.getElementById('thyroid4').checked)&&(document.getElementById('thyroid6').checked)&&(document.getElementById('thyroid8').checked)&&(document.getElementById('hormonal2').checked)&&(document.getElementById('hormonal4').checked)&&(document.getElementById('hormonal6').checked)&&(document.getElementById('hormonal8').checked))
+          else if((document.getElementById('pcos1').checked)&&(document.getElementById('pcos3').checked)&&(document.getElementById('pcos5').checked)&&(document.getElementById('pcos7').checked))
             {
-              text = "Your have symptom of  "+pcos;
+              text = "Your have symptom of  "+pcos+" "+consult.link("http://localhost/OnlineFertilityConsultation/consultation.php");
             }
-          else if((document.getElementById('cyst2').checked)&&(document.getElementById('cyst4').checked)&&(document.getElementById('cyst6').checked)&&(document.getElementById('cyst8').checked)&&(document.getElementById('cyst10').checked)&&(document.getElementById('pcos2').checked)&&(document.getElementById('pcos4').checked)&&(document.getElementById('pcos6').checked)&&(document.getElementById('pcos8').checked)&&(document.getElementById('thyroid1').checked)&&(document.getElementById('thyroid3').checked)&&(document.getElementById('thyroid5').checked)&&(document.getElementById('thyroid7').checked)&&(document.getElementById('hormonal2').checked)&&(document.getElementById('hormonal4').checked)&&(document.getElementById('hormonal6').checked)&&(document.getElementById('hormonal8').checked))
+          else if((document.getElementById('thyroid1').checked)&&(document.getElementById('thyroid3').checked)&&(document.getElementById('thyroid5').checked)&&(document.getElementById('thyroid7').checked))
             {
-              text = "Your have symptom of  "+thyroid;
+              text = "Your have symptom of  "+thyroid+" "+consult.link("http://localhost/OnlineFertilityConsultation/consultation.php");
             }
-          else if((document.getElementById('cyst2').checked)&&(document.getElementById('cyst4').checked)&&(document.getElementById('cyst6').checked)&&(document.getElementById('cyst8').checked)&&(document.getElementById('cyst10').checked)&&(document.getElementById('pcos2').checked)&&(document.getElementById('pcos4').checked)&&(document.getElementById('pcos6').checked)&&(document.getElementById('pcos8').checked)&&(document.getElementById('thyroid2').checked)&&(document.getElementById('thyroid4').checked)&&(document.getElementById('thyroid6').checked)&&(document.getElementById('thyroid8').checked)&&(document.getElementById('hormonal1').checked)&&(document.getElementById('hormonal3').checked)&&(document.getElementById('hormonal5').checked)&&(document.getElementById('hormonal7').checked))
+          else if((document.getElementById('hormonal1').checked)&&(document.getElementById('hormonal3').checked)&&(document.getElementById('hormonal5').checked)&&(document.getElementById('hormonal7').checked))
             {
-              text = "Your have symptom of  "+hormonal;
+              text = "Your have symptom of  "+hormonal+" "+consult.link("http://localhost/OnlineFertilityConsultation/consultation.php");
             }
           else {                
-                text = "No diagnosis related to the symptom, proceed to details consultation" +link("http://localhost/OnlineFertilityConsultation/consultation.php");
+                text = "No diagnosis related to the symptom. "+consult.link("http://localhost/OnlineFertilityConsultation/consultation.php");
             }
             
         
