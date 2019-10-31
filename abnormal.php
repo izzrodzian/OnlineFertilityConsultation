@@ -65,7 +65,89 @@
     </nav>
 </section>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+  <h1><font color="#3377A9">Abnormal Sperm Production</font></h1>
 
+<br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">Problems with producing sperm</font></h4>
+      Male infertility has two common causes and names:
+      <ul>
+        <li>Azoospermia, where no sperm cells are produced.
+        <li>Oligospermia, where fewer than normal sperm cells are produced.
+        <li>Also, sperm cells can be malformed or die before they reach the egg.
+      </ul>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">What causes these problems?</font></h4>
+      In around one in three cases, male infertility is caused by blockages or the absence of tubes – usually due to an injury or a vasectomy.
+      <br><br>
+      In rare cases, a genetic disease such as cystic fibrosis or a chromosomal abnormality can cause male infertility.
+      <br><br>
+      If you’ve helped conceive a baby in the past, but can’t now, you may still be producing normal, healthy sperm, but it may mean your sperm is not compatible with your current partner.
+      <br><br>
+      Sperm quality can also be affected by:
+      <br>
+      <ul>
+        <li>smoking
+        <li>excessive drinking
+        <li>drugs, including steroids and recreational use
+        <li>weight and body mass index (BMI)
+        <li>frequent exposure to extreme heat (working in hot temperatures, or regular saunas)
+        <li>working in cramped conditions (for example, truck drivers)
+        <li>acute viral illness
+        <li>operations for undescended testes or hernias.
+      </ul>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+ <table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">Exploding a few myths</font></h4>
+      You may have heard of some other reasons for poor sperm production. Here’s the real picture:
+      <br>
+      <ul>
+      <li>There is no scientific evidence that wearing tight clothes or bike shorts affects the quality of your sperm.
+      <li>Diet, vitamins and supplements have very little impact on your sperm count – but they can help you stay generally healthy.
+      <li>Sports injuries to the groin affect sperm production only in extremely severe cases.
+    </ul>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">Treating male infertility</font></h4>
+      ICSI treatment, or Intra Cytoplasmic Sperm Injection, is usually recommended for couples where male infertility is a problem, especially relating to the number or quality of sperm produced. ICSI can also be used in cases where a man has had a vasectomy. It involves the direct injection of a single sperm into each egg using sophisticated equipment.
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
   <section class="engine"><a href="https://mobirise.info/v">html templates</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>

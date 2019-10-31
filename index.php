@@ -96,11 +96,11 @@
                         <img src="assets/images/mbr-676x425.jpg" alt="Mobirise" title="">
                     </div>
                     <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-7">Planning for Pregnancy</h4>
+                        <h4 class="card-title mbr-fonts-style display-7">Fertility Insights Program</h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            Find out more regarding the planning for pregnancy.</p>
+                            Find out more regarding the fertility insights program.</p>
                     </div>
-                    <div class="mbr-section-btn text-center"><a href="planning.php" class="btn btn-primary-outline display-4">
+                    <div class="mbr-section-btn text-center"><a href="insightsprogram.php" class="btn btn-primary-outline display-4">
                             Find Out More
                         </a></div>
                 </div>

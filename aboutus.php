@@ -80,6 +80,10 @@
   <tr>
   <td>
     A system that providing helps on the fertility problems and solutions for women and men.
+    <br><br>
+    Online Fertility Consultation System's leading group of fertility specialists, nurses, scientists and counsellors whose collective experience, research, advanced scientific care and collaborative team approach work together to deliver excellent success rates for our patients.
+    <br><br>
+    When you visit an Online Fertility Consultation System, you’ll have access to some of the leading minds in fertility treatment as well as the latest assisted reproductive technology. Our fully integrated network of care means we take care of every step of your journey for you from initial assessment, diagnosis, fertility treatment, advanced scientific techniques and counselling support.
   </td>
   </tr>
   </div></table>

@@ -64,6 +64,57 @@
     </nav>
 </section>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+  <h1><font color="#3377A9">About Miscarriage</font></h1>
+
+<br>
+
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">Coping with miscarriage</font></h4>
+      Sadly, miscarriages are a common occurrence, with one in six pregnancies ending before week 20.  This is little consolation when you have lost a baby through miscarriage, and you may want to find out why it occurred and if you can reduce the risk of it happening again.
+      <br><br>
+      The vast majority of patients who have experienced a miscarriage will go on to achieve a healthy family, so it’s important to stay positive. However, a small percentage of couples will experience more than one consecutive miscarriage. If you have three or more consecutive early pregnancy losses this is called recurrent miscarriage, and affects about 2% of women trying to have a baby.
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">What causes miscarriage?</font></h4>
+      Some of the causes of miscarriage include:
+      <br>
+      <ul>
+      <li>Random chromosome variations
+      <li>Genetic abnormalities
+      <li>Parental chromosome variations
+      <li>Uterine abnormalities
+      <li>Immune causes
+      <li>Blood clotting disorders
+      <li>Other medical conditions
+      <li>Hormone imbalances
+      <li>Age is also an important factor. After a woman has turned 43, there is a 50% chance a pregnancy will spontaneously miscarry.
+      </ul>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+
 
   <section class="engine"><a href="https://mobirise.info/h">how to create a web page</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>

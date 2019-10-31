@@ -64,6 +64,54 @@
     </nav>
 </section>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+  <h1><font color="#3377A9">Male Fertility Prediction</font></h1>
+
+<br>
+
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">What is male infertility?</font></h4>
+      Male infertility has two common causes and names:
+      <br>
+      Male infertility affects around half of all infertile couples. The most common causes include lifestyle factors, problems with sperm production, movement or shape, sperm antibodies, chromosome and DNA abnormalities, hormonal problems or erectile and ejaculation difficulties. Fortunately most causes are readily diagnosed and most can be treated or overcome to help a couple conceive. 
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">Tips to improve the quality of your sperm</font></h4>
+      A few simple changes to your diet and lifestyle could help improve your overall health and fertility.
+      <br>
+      <ul>
+        <li>Stop smoking
+        <li>Limit alcohol intake
+        <li>Maintain a healthy weight
+        <li>Exercise regularly
+        <li>Stop Recreational Drugs and Steroids
+        <li>Have frequent sex (or at least frequent ejaculation)
+        <li>acute viral illness
+        <li>Eat a healthy diet
+      </ul>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
 
   <section class="engine"><a href="https://mobirise.info/k">develop free website</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>

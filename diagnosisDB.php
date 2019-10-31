@@ -72,7 +72,7 @@ if ($result->num_rows > 0) {
 <table border="0">
 <tr>
   <td><img src="images/consultation.png" style="width:128px;height:128px;"></td>
-  <td><h1>Manage Diagnosis Database</h1></td>
+  <td><h1>Diagnosis Database</h1></td>
 </tr>
 </table>
 </center>
@@ -81,8 +81,10 @@ if ($result->num_rows > 0) {
 <table id="myTable" style="margin-top: 20px; width: 95%" align="center">
     <tr>
     
-      <th>Symptoms</th>
-      <th style="width: 30%;">Diagnosis</th>
+      <th style="width: 30%;">Symptoms</th>
+      <th>Diagnosis</th>
+      <th>Explaination</th>
+      <th>Treatments</th>
       <th>&nbsp;</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)){ ?>
@@ -90,6 +92,8 @@ if ($result->num_rows > 0) {
       
       <td><?php echo $row['symptoms']; ?></td>
       <td><?php echo $row['diagnosis']; ?></td>
+      <td><?php echo $row['explanation']; ?></td>
+      <td><?php echo $row['treatments']; ?></td>
       <td><input type="submit" name="save_change" value="Select"></a></td>
     </tr>
     <?php } ?>

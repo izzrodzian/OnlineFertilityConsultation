@@ -64,6 +64,77 @@
     </nav>
 </section>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+  <h1><font color="#3377A9">About Infertility</font></h1>
+
+<br>
+
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">What is infertility?</font></h4>
+      Infertility is defined as the inability to conceive a pregnancy after 12 months of unprotected sexual intercourse. It affects about 1 in 6 Australian couples of reproductive age.
+      <br><br>
+      Causes of infertility are many and varied and involve male, female or a combination of factors. This includes problems with the production of sperm or eggs, the structure or function of male or female reproductive systems; and/or hormonal and immune conditions. 
+      <br><br>
+     In 40% of couples the cause of infertility is attributed to a sperm factor, in another 40% the cause is found within the female reproductive system, and a third will have a combination of male and female factors. 
+      <br><br>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">What causes female infertility?</font></h4>
+      Female fertility can be affected by
+      <br>
+      <ul>
+      <li>a woman’s age
+       <li>tubal disease or problems with the fallopian tubes
+       <li>ovulation disorders
+       <li>endometriosis
+      <li> polycystic ovarian syndrome
+       <li>fibroids
+       <li>Salpingitis (Pelvic inflammatory disease) caused by sexually transmitted disease.
+    </ul>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
+<table border="0" style="width: 75%">
+  <div class="wrapper">
+  <tr>
+     <td><h4><font color="#0EAB8F">What causes male infertility?</font></h4>
+      Male fertility can be affected by
+      <br>
+      <ul>
+      <li>Blocked / absent vas deferens (tubes)
+      <li>Low sperm number and/or poor sperm production
+      <li>High numbers of abnormally shaped sperm
+      <li>Failure of sperm production
+      <li>Anti-sperm antibodies
+      <li>Sperm DNA fragmentation
+      <li>Genetic diseases such as cystic fibrosis or a chromosomal variation
+    </ul>
+   </td>
+    </tr>
+  </div></table>
+
+ <br>
+
 
   <section class="engine"><a href="https://mobirise.info/z">best css templates</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>

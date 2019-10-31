@@ -73,7 +73,7 @@
 <br>
 <br>
 <center>
-  <h1><font color="#3377A9">About Online Fertility Consultation System</font></h1>
+  <h1><font color="#3377A9">Fibroids</font></h1>
 
 <br>
 
