@@ -36,7 +36,6 @@ if ($result->num_rows > 0) {
   <table class="table" width="80%" style="margin-top: 20px" align="center">
     <tr>
       <th>Consultation ID</th>
-      <th>Patient ID</th>
       <th>Consultation Date</th>
       <th>Symptoms</th>
       <th>History</th>
@@ -50,7 +49,6 @@ if ($result->num_rows > 0) {
     <?php while($row = mysqli_fetch_assoc($result)){ ?>
     <tr>
       <td><?php echo $row['consultationID']; ?></td>
-      <td><?php echo $row['patientID']; ?></td>
       <td><?php echo $row['consultationDate']; ?></td>
       <td><?php echo $row['symptoms']; ?></td>
       <td><?php echo $row['history']; ?></td>
